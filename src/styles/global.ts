@@ -9,12 +9,12 @@ export const GlobalStyle = createGlobalStyle`
 
   :focus {
     outline: 0;
-    box-shadow: 0 0 0 2px ${({ theme }) => theme['green-500']};
+    box-shadow: 0 0 0 2px ${({ theme }) => theme['purple']};
   }
 
   body {
-    background: ${({ theme }) => theme['gray-900']};
-    color: ${({ theme }) => theme['gray-300']};
+    background: ${({ theme }) => theme['gray-100']};
+    color: ${({ theme }) => theme['gray-900']};
     -webkit-font-smoothing: antialiased;
   }
 
@@ -22,5 +22,6 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 1rem;
+    /* line-height: 3rem; */
   }
 `
