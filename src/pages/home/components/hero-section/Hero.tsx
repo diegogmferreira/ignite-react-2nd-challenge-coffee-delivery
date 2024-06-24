@@ -1,4 +1,4 @@
-import { HeroContainer, HeroContent } from "./styles";
+import { HeroContainer, HeroContent, HeroList } from "./styles";
 
 import HeroImg from "../../../../assets/hero-image.png";
 
@@ -11,7 +11,20 @@ export function HeroSection() {
           <p>Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora</p>
         </div>
 
-        {/* <HeroList /> */}
+        <HeroList>
+          <div>
+            Digo
+          </div>
+          <div>
+            Digo
+          </div>
+          <div>
+            Digo
+          </div>
+          <div>
+            Digo
+          </div>
+        </HeroList>
 
       </HeroContent>
       <img src={HeroImg} alt="" />
