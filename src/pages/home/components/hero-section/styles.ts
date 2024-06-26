@@ -69,5 +69,6 @@ export const HeroItem = styled.div`
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
+    color: ${({theme}) => theme.colors.white};
   }
 `

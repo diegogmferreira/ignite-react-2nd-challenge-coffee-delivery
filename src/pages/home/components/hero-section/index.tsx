@@ -19,13 +19,13 @@ export function HeroSection() {
           <div>
             <HeroItem>
               <div style={{ backgroundColor: colors["yellow-dark"] }}>
-                <ShoppingCart weight="fill" color="#fff" size={16} />
+                <ShoppingCart weight="fill" size={16} />
               </div>
               <span>Compra simples e segura</span>
             </HeroItem>
             <HeroItem>
               <div style={{ backgroundColor: colors["yellow"] }}>
-                <Timer weight="fill" color="#fff" size={16} />
+                <Timer weight="fill" size={16} />
               </div>
               <span>Entrega rápida e rastreada</span>
             </HeroItem>
@@ -34,14 +34,14 @@ export function HeroSection() {
           <div>
             <HeroItem>
               <div style={{ backgroundColor: colors["gray-700"] }}>
-                <Package weight="fill" color="#fff" size={16} />
+                <Package weight="fill" size={16} />
               </div>
               <span>Embalagem mantém o café intacto</span>
             </HeroItem>
 
             <HeroItem>
               <div style={{ backgroundColor: colors["purple"] }}>
-                <Coffee weight="fill" color="#fff" size={16} />
+                <Coffee weight="fill" size={16} />
               </div>
               <span>O café chega fresquinho até você  </span>
             </HeroItem>

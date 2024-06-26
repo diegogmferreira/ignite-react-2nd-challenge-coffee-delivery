@@ -49,11 +49,11 @@ export const defaultTheme = {
       'font-family': 'Roboto, sans-serif',
       'text-l': '1.25rem',
       'text-m': '1rem',
-      'title-s': {
+      'text-s': {
         'font-size': '0.875rem',
         'font-weight': '400',
       },
-      'title-xs': {
+      'text-xs': {
         'font-size': '0.75rem',
         'font-weight': '700',
       },

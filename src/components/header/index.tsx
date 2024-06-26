@@ -1,6 +1,6 @@
 import { HeaderContainer } from './styles'
 
-import { Scroll, Timer } from 'phosphor-react'
+import { MapPin, ShoppingCart } from 'phosphor-react'
 import { NavLink } from 'react-router-dom'
 import logoCoffee from '../../assets/coffee-logo.svg'
 
@@ -9,11 +9,12 @@ export function Header() {
     <HeaderContainer>
       <img src={logoCoffee} alt="" />
       <nav>
-        <NavLink to="/" title="Timer">
-          <Timer size={40} />
-        </NavLink>
+        <div className="location">
+          <MapPin weight='fill' size={22} />
+          Porto Alegre, RS
+        </div>
         <NavLink to="/history" title="Histórico">
-          <Scroll size={24} />
+        <ShoppingCart weight="fill" size={18} />
         </NavLink>
       </nav>
     </HeaderContainer>

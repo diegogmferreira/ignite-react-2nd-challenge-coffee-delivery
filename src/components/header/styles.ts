@@ -8,28 +8,36 @@ export const HeaderContainer = styled.header`
 
   nav {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.75rem;
+
+    .location {
+      display: flex;
+      gap: .25rem;
+      padding: 0.5rem;
+      border-radius: 6px;
+
+      align-items: center;
+      justify-content: center;
+
+      background-color: ${({ theme }) => theme.colors['purple-light']};
+      color: ${({ theme }) => theme.colors['purple-dark']};
+      font-family: ${({ theme }) => theme.text.roboto['font-family']};
+      font-size: ${({ theme }) => theme.text.roboto['text-s']['font-size']};
+      font-weight: ${({ theme }) => theme.text.roboto['text-s']['font-weight']};
+      line-height: 1rem;
+    }
 
     a {
-      width: 3rem;
-      height: 3rem;
-
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center; 
+      width: 2.375rem;
+      height: 2.375rem;
 
-      color: ${({ theme }) => theme['gray-100']};
-
-      border-top: 3px solid transparent;
-      border-bottom: 3px solid transparent;
-
-      &:hover {
-        border-bottom: 3px solid ${({ theme }) => theme['green-500']};
-      }
-
-      &.active {
-        color: ${({ theme }) => theme['green-500']};
-      }
+      padding: 0.5rem;
+      border-radius: 6px;
+      background-color: ${({ theme }) => theme.colors['yellow-light']};
+      color: ${({ theme }) => theme.colors['yellow-dark']};
     }
   }
 `
