@@ -1,8 +1,12 @@
-import { HeroContainer, HeroContent, HeroList } from "./styles";
+import { HeroContainer, HeroContent, HeroItem, HeroList } from "./styles";
 
+import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 import HeroImg from "../../../../assets/hero-image.png";
 
+import { defaultTheme } from "../../../../styles/themes/default";
+
 export function HeroSection() {
+  const { colors } = defaultTheme;
   return (
     <HeroContainer>
       <HeroContent>
@@ -13,17 +17,36 @@ export function HeroSection() {
 
         <HeroList>
           <div>
-            Digo
+            <HeroItem>
+              <div style={{ backgroundColor: colors["yellow-dark"] }}>
+                <ShoppingCart weight="fill" color="#fff" size={16} />
+              </div>
+              <span>Compra simples e segura</span>
+            </HeroItem>
+            <HeroItem>
+              <div style={{ backgroundColor: colors["yellow"] }}>
+                <Timer weight="fill" color="#fff" size={16} />
+              </div>
+              <span>Entrega rápida e rastreada</span>
+            </HeroItem>
           </div>
+
           <div>
-            Digo
+            <HeroItem>
+              <div style={{ backgroundColor: colors["gray-700"] }}>
+                <Package weight="fill" color="#fff" size={16} />
+              </div>
+              <span>Embalagem mantém o café intacto</span>
+            </HeroItem>
+
+            <HeroItem>
+              <div style={{ backgroundColor: colors["purple"] }}>
+                <Coffee weight="fill" color="#fff" size={16} />
+              </div>
+              <span>O café chega fresquinho até você  </span>
+            </HeroItem>
           </div>
-          <div>
-            Digo
-          </div>
-          <div>
-            Digo
-          </div>
+
         </HeroList>
 
       </HeroContent>

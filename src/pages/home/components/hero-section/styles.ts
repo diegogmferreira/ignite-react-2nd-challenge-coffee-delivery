@@ -17,7 +17,7 @@ export const HeroContent = styled.div`
   flex-direction: column;
   width: 100%;
   height: 34rem;
-  gap: 1rem;
+  gap: 4.125rem;
 
   align-items: start;
   justify-content: center;
@@ -43,9 +43,31 @@ export const HeroContent = styled.div`
 `
 
 export const HeroList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: row;
   width: 100%;
+  gap: 2.5rem;
+`
 
-  background-color: red;
+export const HeroItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-items: center;
+
+  gap: 0.5rem;
+
+  color: ${({theme}) => theme.colors["gray-700"]};
+  font-family: ${({theme}) => theme.text.roboto["font-family"]};
+  font-size: ${({theme}) => theme.text.roboto["text-m"]};
+  font-weight: 400;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+  }
 `
