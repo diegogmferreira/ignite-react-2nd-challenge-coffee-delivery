@@ -66,7 +66,7 @@ export const CoffeeListCard = styled.div`
     width: 100%;
     margin-top: 2rem;
     margin-bottom: 1.125rem;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-around;
 
     p {
@@ -88,6 +88,8 @@ export const CoffeeListCard = styled.div`
 
 export const CardActionsButtons = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 0.5rem;
 
   .cart-button {
@@ -102,5 +104,11 @@ export const CardActionsButtons = styled.div`
       border-radius: 6px;
       background-color: ${({ theme }) => theme.colors['purple-dark']};
       color: ${({ theme }) => theme.colors['gray-200']};
+
+      cursor: pointer;
+
+      &:hover {
+        filter: brightness(.8)
+      }
     }
 `

@@ -1,9 +1,11 @@
 import { CoffeeListContainer, CoffeeListFilterItem, CoffeeListFilters, CoffeeListHeader, CoffeeListTitle } from "./styles";
 
-import ExpressoImg from '../../../../assets/expresso.png';
+import { getCoffeeList } from "../../../../mock/coffee-list";
 import { CoffeeCard } from "../coffee-card";
 
 export function CoffeeList() {
+  const coffeeList = getCoffeeList();
+
   return (
     <CoffeeListContainer>
       <CoffeeListHeader>
@@ -19,15 +21,17 @@ export function CoffeeList() {
       </CoffeeListHeader>
 
       <div className="card-grid">
-        <CoffeeCard
-          imgUrl={ExpressoImg}
-          title="expresso tradicional"
-          tags={["tradicional"]}
-          description="O tradicional café feito com água quente e grãos moídos"
-          price="9,99"
-        />
+        {coffeeList.map(coffeeItem => (
+          <CoffeeCard
+            key={coffeeItem.title}
+            imgUrl={coffeeItem.imgUrl}
+            title={coffeeItem.title}
+            tags={coffeeItem.tags}
+            description={coffeeItem.description}
+            price={coffeeItem.price}
+          />
+        ))}
       </div>
-
     </CoffeeListContainer>
   )
 }
