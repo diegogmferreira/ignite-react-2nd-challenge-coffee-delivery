@@ -1,10 +1,23 @@
 import { CoffeeListContainer, CoffeeListFilterItem, CoffeeListFilters, CoffeeListHeader, CoffeeListTitle } from "./styles";
 
+import { useState } from "react";
 import { getCoffeeList } from "../../../../mock/coffee-list";
 import { CoffeeCard } from "../coffee-card";
 
 export function CoffeeList() {
   const coffeeList = getCoffeeList();
+  const coffeeTags = ["tradicional", "especial", "com leite", "alcoólico", "gelado"];
+  const [selectedTag, setSelectedTag] = useState("");
+
+  const filteredCoffeeList = coffeeList.filter(coffeeItem => {
+    if (selectedTag === "") return true;
+    return coffeeItem.tags.includes(selectedTag);
+  })
+
+  function handleSelectedTag(tag: string) {
+    if (selectedTag === tag) return setSelectedTag("");
+    setSelectedTag(tag);
+  }
 
   return (
     <CoffeeListContainer>
@@ -12,16 +25,20 @@ export function CoffeeList() {
         <CoffeeListTitle>Nossos cafés</CoffeeListTitle>
 
         <CoffeeListFilters>
-          <CoffeeListFilterItem>Tradicional</CoffeeListFilterItem>
-          <CoffeeListFilterItem>Especial</CoffeeListFilterItem>
-          <CoffeeListFilterItem>Com leite</CoffeeListFilterItem>
-          <CoffeeListFilterItem>Alcoólico</CoffeeListFilterItem>
-          <CoffeeListFilterItem>Gelado</CoffeeListFilterItem>
+          {coffeeTags.map(tag => (
+            <CoffeeListFilterItem 
+              key={tag}
+              onClick={() => handleSelectedTag(tag)}
+              data-selected={selectedTag === tag}
+            >
+              {tag}
+            </CoffeeListFilterItem>
+          ))}
         </CoffeeListFilters>
       </CoffeeListHeader>
 
       <div className="card-grid">
-        {coffeeList.map(coffeeItem => (
+        {filteredCoffeeList.map(coffeeItem => (
           <CoffeeCard
             key={coffeeItem.title}
             imgUrl={coffeeItem.imgUrl}

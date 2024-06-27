@@ -55,5 +55,10 @@ export const CoffeeListFilterItem = styled.button`
     color: ${({ theme }) => theme.colors.white};
   }
 
+  &[data-selected="true"] {
+    background-color: ${({ theme }) => theme.colors["yellow-dark"]};
+    color: ${({ theme }) => theme.colors.white};
+  }
+
   transition: all ease 500;
 `
