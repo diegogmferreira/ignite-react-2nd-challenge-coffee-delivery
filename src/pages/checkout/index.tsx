@@ -1,5 +1,11 @@
+import { UserInformation } from "./components/user-information";
+import { Container } from "./styles";
+
 export function Checkout() {
   return (
-    <p>Checkout</p>
+    <Container>
+      <UserInformation />
+      {/* <UserInformation /> */}
+    </Container>
   )
 }
