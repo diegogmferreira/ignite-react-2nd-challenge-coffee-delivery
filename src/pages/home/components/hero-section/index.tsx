@@ -3,10 +3,10 @@ import { HeroContainer, HeroContent, HeroItem, HeroList } from "./styles";
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 import HeroImg from "../../../../assets/hero-image.png";
 
-import { defaultTheme } from "../../../../styles/themes/default";
+import { useTheme } from "styled-components";
 
 export function HeroSection() {
-  const { colors } = defaultTheme;
+  const { colors } = useTheme();
   return (
     <HeroContainer>
       <HeroContent>
