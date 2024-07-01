@@ -10,7 +10,7 @@ export const UserInfoForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  width: 100%;
+  min-width: 40rem;
 
   .address-form {
     display: flex;
@@ -46,7 +46,8 @@ export const UserInfoForm = styled.form`
   .address-inputs {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    width: 40rem;
+    /* width: 40rem; */
+    width: 100%;
     gap: 1rem;
   }
 
@@ -61,7 +62,7 @@ export const PaymentSelectButton = styled.button`
   display: flex;
   justify-content: baseline;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   padding: 1rem;
 
   height: 3.25rem;

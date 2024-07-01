@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
   display: flex;
   flex: 1;
-  gap: 2rem;
+  gap: 2.5rem;
 `
 
 export const CheckoutTitles = styled.p`
@@ -11,5 +11,4 @@ export const CheckoutTitles = styled.p`
   font-size: ${({theme}) => theme.text['baloo-2']['title-xs']['font-size']};
   font-weight: ${({theme}) => theme.text['baloo-2']['title-xs']['font-weight']};
   color: ${({theme}) => theme.colors['gray-800']};
-
 `
