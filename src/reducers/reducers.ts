@@ -1,4 +1,5 @@
 import { produce } from 'immer';
+import { PurchaseDataType } from '../pages/checkout';
 import { ActionTypes } from './actions';
 
 export type CoffeeItem = {
@@ -11,10 +12,12 @@ export type CoffeeItem = {
 
 interface CoffeeState {
   coffeeList: CoffeeItem[]
+  total: 0,
+  purchaseData: PurchaseDataType
   // activeCycleId: string | null
 }
 
-export function cyclesReducer(state: CoffeeState, action: any) {
+export function coffeeListReducer(state: CoffeeState, action: any) {
   switch (action.type) {
     case ActionTypes.CREATE_CYCLE:
       return produce(state, (draft) => {
