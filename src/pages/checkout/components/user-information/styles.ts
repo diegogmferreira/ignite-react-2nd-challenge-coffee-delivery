@@ -6,7 +6,7 @@ export const Container = styled.div`
   gap: 1rem;
 `
 
-export const UserInfoForm = styled.form`
+export const UserInfoForm = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;

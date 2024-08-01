@@ -3,6 +3,7 @@ import { CheckoutCoffeeCard } from "../checkout-coffee-card";
 import { CartCheckoutContainer, CheckoutPrice, ConfirmPurchaseButton, Container, Divider } from "./styles";
 
 export function CartCheckout() {
+
   return (
     <Container>
       <CheckoutTitles>Cafés selecionados</CheckoutTitles>
@@ -30,7 +31,7 @@ export function CartCheckout() {
           </div>
         </CheckoutPrice>
 
-        <ConfirmPurchaseButton>
+        <ConfirmPurchaseButton type="submit">
           Confirmar pedido
         </ConfirmPurchaseButton>
       </CartCheckoutContainer>

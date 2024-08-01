@@ -54,3 +54,10 @@ export const OptionalText = styled.span`
   line-height: 130%;
   font-style: italic;
 `
+
+export const ErrorText = styled.span`
+  font-family: ${({ theme }) => theme.text.roboto['font-family']};
+  font-size: ${({ theme }) => theme.text.roboto["text-xs"]["font-size"]};
+  color: ${({ theme }) => theme.colors['red-error']};
+  padding-left: 0.75rem;
+`
