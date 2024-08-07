@@ -1,19 +1,16 @@
-import { createContext, ReactNode, useReducer } from "react";
+import { createContext, ReactNode, useEffect, useReducer } from "react";
 import { PurchaseDataType } from "../pages/checkout";
-import { coffeeListReducer } from "../reducers/reducers";
-
-type CoffeeItem = {
-  title: string;
-  description: string;
-  price: string;
-  tags: string[];
-  imgUrl: string;
-}
+import { addNewCoffeeAction, decreaseQtdAction, increaseQtdAction, removeCoffeeAction, sumPurchaseTotalPrice } from "../reducers/actions";
+import { CoffeeItem, coffeePurchaseListReducer } from "../reducers/reducers";
 
 interface PurchaseCartContextType {
-  coffeeList: CoffeeItem[];
-  total: number;
+  coffeePurchaseList: CoffeeItem[];
+  totalPrice: number;
   purchaseData: PurchaseDataType;
+  addCoffee: (coffeeItem: CoffeeItem) => void;
+  increaseQtd: (coffeeItem: CoffeeItem) => void;
+  decreaseQtd: (coffeeItem: CoffeeItem) => void;
+  removeCoffee: (coffeeItem: CoffeeItem) => void;
 }
 
 export const PurchaseCartContext = createContext({} as PurchaseCartContextType)
@@ -24,20 +21,11 @@ interface PurchaseCartContextProviderProps {
 
 export function PurchaseCartProvider({ children }: PurchaseCartContextProviderProps) {
   const [coffeeListState, dispatch] = useReducer(
-    coffeeListReducer,
+    coffeePurchaseListReducer,
     {
-      coffeeList: [],
-      total: 0,
-      purchaseData: {
-        cep: '',
-        street: '',
-        number: '',
-        complement: '',
-        district: '',
-        city: '',
-        state: '',
-        paymentMethod: '',
-      }
+      coffeePurchaseList: [],
+      totalPrice: 0,
+      purchaseData: null
     },
     (initialState) => {
       const storedStateAsJSON = localStorage.getItem(
@@ -52,14 +40,49 @@ export function PurchaseCartProvider({ children }: PurchaseCartContextProviderPr
     },
   )
 
-  const { coffeeList, total, purchaseData } = coffeeListState
+  const { coffeePurchaseList, totalPrice, purchaseData } = coffeeListState
+
+  useEffect(() => {
+    const stateJSON = JSON.stringify(coffeeListState)
+
+    localStorage.setItem('@ignite-coffeePurchase:purchase-state-v1.0.0', stateJSON)
+  }, [coffeeListState])
+
+  function addCoffee(coffeeItem: CoffeeItem) {
+    const newCoffeeItem = {
+      ...coffeeItem,
+      total: coffeeItem.qtd * parseFloat(coffeeItem.price),
+    }
+
+    dispatch(addNewCoffeeAction(newCoffeeItem))
+  }
+
+  function increaseQtd(coffeeItem: CoffeeItem) {
+    dispatch(increaseQtdAction(coffeeItem))
+  }
+
+  function decreaseQtd(coffeeItem: CoffeeItem) {
+    dispatch(decreaseQtdAction(coffeeItem))
+  }
+
+  function removeCoffee(coffeeItem: CoffeeItem) {
+    dispatch(removeCoffeeAction(coffeeItem))
+  }
+
+  useEffect(() => {
+    dispatch(sumPurchaseTotalPrice())
+  }, [coffeeListState])
 
   return (
     <PurchaseCartContext.Provider
       value={{
-        coffeeList,
-        total,
-        purchaseData
+        coffeePurchaseList,
+        totalPrice,
+        purchaseData,
+        addCoffee,
+        increaseQtd,
+        decreaseQtd,
+        removeCoffee,
       }}
     >
       {children}

@@ -3,51 +3,77 @@ import { PurchaseDataType } from '../pages/checkout';
 import { ActionTypes } from './actions';
 
 export type CoffeeItem = {
+  id: number;
   title: string;
   description: string;
   price: string;
   tags: string[];
   imgUrl: string;
+  qtd: number;
+  total: number;
 }
 
-interface CoffeeState {
-  coffeeList: CoffeeItem[]
-  total: 0,
+export interface CoffeeState {
+  coffeePurchaseList: CoffeeItem[]
+  totalPrice: number,
   purchaseData: PurchaseDataType
-  // activeCycleId: string | null
 }
 
-export function coffeeListReducer(state: CoffeeState, action: any) {
+export function coffeePurchaseListReducer(state: CoffeeState, action: any) {
   switch (action.type) {
-    case ActionTypes.CREATE_CYCLE:
+    case ActionTypes.ADD_COFFEE:
       return produce(state, (draft) => {
-        draft.cycles.push(action.payload.newCycle)
-        draft.activeCycleId = action.payload.newCycle.id
+        draft.coffeePurchaseList.push(action.payload.coffeeItem)
       })
 
-    case ActionTypes.INTERRUPT_CYCLE: {
-      const currentCycleIndex = state.cycles.findIndex(
-        (cycle) => cycle.id === state.activeCycleId,
+    case ActionTypes.INCREASE_QTD: {
+      const currentCoffeePurchaseListIndex = state.coffeePurchaseList.findIndex(
+        (coffeeItem) => coffeeItem.id === action.payload.coffeeItem.id,
       )
 
-      if (currentCycleIndex < 0) return state
+      if (currentCoffeePurchaseListIndex < 0) return state
 
       return produce(state, (draft) => {
-        draft.cycles[currentCycleIndex].interruptedDate = new Date()
-        draft.activeCycleId = null
+        draft.coffeePurchaseList[currentCoffeePurchaseListIndex].qtd + 1
       })
     }
 
-    case ActionTypes.FINISH_CYCLE: {
-      const currentCycleIndex = state.cycles.findIndex(
-        (cycle) => cycle.id === state.activeCycleId,
+    case ActionTypes.DECREASE_QTD: {
+      const currentCoffeePurchaseListIndex = state.coffeePurchaseList.findIndex(
+        (coffeeItem) => coffeeItem.id === action.payload.coffeeItem.id,
       )
 
-      if (currentCycleIndex < 0) return state
+      if (currentCoffeePurchaseListIndex < 0) return state
+      if (state.coffeePurchaseList[currentCoffeePurchaseListIndex].qtd === 1) return
 
       return produce(state, (draft) => {
-        draft.cycles[currentCycleIndex].finishedDate = new Date()
-        draft.activeCycleId = null
+        draft.coffeePurchaseList[currentCoffeePurchaseListIndex].qtd - 1
+      })
+    }
+
+    case ActionTypes.REMOVE_COFFEE: {
+      const currentCoffeePurchaseListIndex = state.coffeePurchaseList.findIndex(
+        (coffeeItem) => coffeeItem.id === action.payload.coffeeItem.id,
+      )
+
+      if (currentCoffeePurchaseListIndex < 0) return state
+
+      return produce(state, (draft) => {
+        draft.coffeePurchaseList.splice(currentCoffeePurchaseListIndex, 1);
+      })
+    }
+
+    case ActionTypes.SUM_PURCHASE_TOTAL_PRICE: {
+      return produce(state, (draft) => {
+        draft.totalPrice = draft.coffeePurchaseList.reduce((total, coffeeItem) => {
+          return total + coffeeItem.total
+        }, 0)
+      })
+    }
+
+    case ActionTypes.SET_PURCHASE_DATA: {
+      return produce(state, (draft) => {
+        draft.purchaseData = action.payload.purchaseData
       })
     }
 

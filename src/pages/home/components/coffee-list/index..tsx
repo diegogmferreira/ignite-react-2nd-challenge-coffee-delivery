@@ -40,7 +40,7 @@ export function CoffeeList() {
       <div className="card-grid">
         {filteredCoffeeList.map(coffeeItem => (
           <CoffeeCard
-            key={coffeeItem.title}
+            key={coffeeItem.id}
             imgUrl={coffeeItem.imgUrl}
             title={coffeeItem.title}
             tags={coffeeItem.tags}
