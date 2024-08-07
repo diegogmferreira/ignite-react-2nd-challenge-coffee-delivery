@@ -35,6 +35,7 @@ export function coffeePurchaseListReducer(state: CoffeeState, action: any) {
 
       return produce(state, (draft) => {
         draft.coffeePurchaseList[currentCoffeePurchaseListIndex].qtd + 1
+        draft.coffeePurchaseList[currentCoffeePurchaseListIndex].total = parseFloat(draft.coffeePurchaseList[currentCoffeePurchaseListIndex].price) * draft.coffeePurchaseList[currentCoffeePurchaseListIndex].qtd
       })
     }
 
@@ -44,10 +45,11 @@ export function coffeePurchaseListReducer(state: CoffeeState, action: any) {
       )
 
       if (currentCoffeePurchaseListIndex < 0) return state
-      if (state.coffeePurchaseList[currentCoffeePurchaseListIndex].qtd === 1) return
+      if (state.coffeePurchaseList[currentCoffeePurchaseListIndex].qtd === 1) return state
 
       return produce(state, (draft) => {
         draft.coffeePurchaseList[currentCoffeePurchaseListIndex].qtd - 1
+        draft.coffeePurchaseList[currentCoffeePurchaseListIndex].total = parseFloat(draft.coffeePurchaseList[currentCoffeePurchaseListIndex].price) * draft.coffeePurchaseList[currentCoffeePurchaseListIndex].qtd
       })
     }
 

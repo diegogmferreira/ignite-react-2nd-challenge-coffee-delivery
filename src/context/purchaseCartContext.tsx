@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useEffect, useReducer } from "react";
 import { PurchaseDataType } from "../pages/checkout";
 import { addNewCoffeeAction, decreaseQtdAction, increaseQtdAction, removeCoffeeAction, sumPurchaseTotalPrice } from "../reducers/actions";
-import { CoffeeItem, coffeePurchaseListReducer } from "../reducers/reducers";
+import { CoffeeItem, coffeePurchaseListReducer, CoffeeState } from "../reducers/reducers";
 
 interface PurchaseCartContextType {
   coffeePurchaseList: CoffeeItem[];
@@ -20,13 +20,24 @@ interface PurchaseCartContextProviderProps {
 }
 
 export function PurchaseCartProvider({ children }: PurchaseCartContextProviderProps) {
+  const initialState: CoffeeState = {
+    coffeePurchaseList: [],
+    totalPrice: 0,
+    purchaseData: {
+      zipCode: '',
+      streetName: '',
+      number: '',
+      complement: '',
+      neighborhood: '',
+      city: '',
+      state: '',
+      paymentMethod: 'CREDIT'
+    }
+  };
+
   const [coffeeListState, dispatch] = useReducer(
     coffeePurchaseListReducer,
-    {
-      coffeePurchaseList: [],
-      totalPrice: 0,
-      purchaseData: null
-    },
+    initialState,
     (initialState) => {
       const storedStateAsJSON = localStorage.getItem(
         '@ignite-coffeePurchase:purchase-state-v1.0.0',
@@ -62,6 +73,9 @@ export function PurchaseCartProvider({ children }: PurchaseCartContextProviderPr
   }
 
   function decreaseQtd(coffeeItem: CoffeeItem) {
+    if (coffeeItem.qtd === 1) return
+    // if (coffeeItem.qtd < 1) dispatch(removeCoffeeAction(coffeeItem))
+
     dispatch(decreaseQtdAction(coffeeItem))
   }
 
